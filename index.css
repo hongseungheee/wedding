@@ -477,3 +477,70 @@ a:hover {
     border-radius: 50%;
     font-weight: bold;
 }
+
+
+/* 마음 전하실 곳 컨테이너의 그리드 레이아웃 */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px; /* 행 간격 */
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* 이름 행 (신랑/신부, 부모님) */
+.names-row {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.names-row p {
+    margin: 0;
+}
+
+/* 계좌 정보 행 */
+.accounts-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.account-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* 계좌번호 텍스트와 복사 버튼 정렬 */
+.account-item span {
+    display: block;
+    font-size: 0.9em;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+.copy-btn {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.copy-btn:hover {
+    background-color: #7a9c8f;
+}
+
+/* 행 사이 구분선 */
+.separator-line {
+    width: 80%;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 15px auto;
+}
