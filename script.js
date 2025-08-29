@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const invitationMessageElement = document.getElementById('invitation-message');
 
     if (name) {
-        invitationMessageElement.textContent = `${name}님 결혼식에 초대합니다`;
+        invitationMessageElement.textContent = `${name}님, 저희의 새로운 시작을 함께 축복해주세요.`;
     } else {
         invitationMessageElement.textContent = '결혼식에 초대합니다';
     }
