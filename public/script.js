@@ -66,6 +66,31 @@ document.addEventListener('DOMContentLoaded', () => {
         loop: true,
     });
 
+
+    // --- 앨범 사진 클릭 시 팝업 기능 ---
+    const albumPhotos = document.querySelectorAll('.swiper-slide img');
+    const imageModal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+    const closeBtn = document.querySelector('.image-modal .close-btn');
+
+    albumPhotos.forEach(photo => {
+        photo.addEventListener('click', () => {
+            modalImage.src = photo.src;
+            imageModal.style.display = 'flex';
+        });
+    });
+
+    closeBtn.addEventListener('click', () => {
+        imageModal.style.display = 'none';
+    });
+
+    imageModal.addEventListener('click', (event) => {
+        if (event.target === imageModal) {
+            imageModal.style.display = 'none';
+        }
+    });
+
+
     // --- 계좌 복사 기능 ---
     copyButtons.forEach(button => {
         button.addEventListener('click', (event) => {
