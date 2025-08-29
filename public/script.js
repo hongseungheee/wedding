@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const animationDuration = Math.random() * 5 + 5;
         petal.style.animationDuration = `${animationDuration}s`;
         
-        const animationDelay = Math.random() * 2;
-        petal.style.animationDelay = `${animationDelay}s`;
+        //const animationDelay = Math.random() * 2;
+        //petal.style.animationDelay = `${animationDelay}s`;
         
         const colors = ['#ffb6c1', '#ffc0cb', '#ffe4e1'];
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function startFallingPetals() {
         if (!petalInterval) {
-            petalInterval = setInterval(createPetal, 300);
+            petalInterval = setInterval(createPetal, 600);
         }
     }
 
