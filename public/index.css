@@ -27,12 +27,10 @@ body {
 
 /* 첫 페이지 컨테이너 */
 .first-page {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative; /* fixed 대신 relative로 변경 */
     width: 100vw;
-    height: 100vh;
-    z-index: 2000; /* 기존 요소들 위에 오도록 설정 */
+    height: 100vh; /* 화면 높이만큼만 차지 */
+    z-index: 2000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,26 +41,24 @@ body {
 .fullscreen-photo {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 이미지를 찌그러지지 않게 화면에 맞춤 */
-    animation: fadeIn 2s ease-in; /* 부드럽게 나타나는 애니메이션 */
+    object-fit: cover;
+    animation: fadeIn 2s ease-in;
 }
 
 /* 컨테이너 */
 .invitation-container {
-    opacity: 0;
-    visibility: hidden;
-    z-index: 1500; /* first-page보다 작은 값 */
+    /* 첫 페이지와 겹치지 않도록 스타일 수정 */
     max-width: 480px;
     margin: 0 auto;
     background-color: #ffffff;
-    border-radius: 20px; /* 더 부드러운 모서리 */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* 그림자 강화 */
-    animation: fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1); /* 더 부드러운 애니메이션 */
-    padding: 35px 30px; /* 여백 더 확보 */
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    padding: 35px 30px;
     text-align: center;
     position: relative;
     overflow: hidden;
-    
+    animation: fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1500;
 }
 
 @keyframes fall {
@@ -258,16 +254,17 @@ a:hover {
         font-size: 0.95em;
     }
 }
-/* 꽃잎 컨테이너 (화면 전체에 오도록) */
+
+/* 꽃잎 컨테이너 */
 .petals-container {
-    position: fixed;
+    position: absolute; /* first-page 내부에서 절대 위치 */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* 클릭을 방해하지 않도록 */
-    overflow: hidden; /* 화면 밖으로 나가는 꽃잎 숨기기 */
-    z-index: 2001; /* first-page (2000)보다 높은 값으로 설정 */
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2001; /* first-page보다 높은 값 */
 }
 
 
@@ -289,14 +286,13 @@ a:hover {
     animation-timing-function: linear, ease-in;
     animation-iteration-count: infinite, 1;
     animation-fill-mode: none, forwards;
-
 }
 
 /* 꽃잎이 떨어지는 애니메이션 */
 @keyframes fall {
     from {
         transform: translateY(-10vh) rotate(0deg); /* 화면 위에서 시작 */
-        opacity: 0;
+        opacity: 0.7;
     }
     to {
         transform: translateY(110vh) rotate(720deg); /* 화면 아래로 떨어지고 더 많이 회전 */
@@ -307,4 +303,43 @@ a:hover {
     to {
         opacity: 0.8;
     }
+}
+
+
+
+/* 앨범 섹션 */
+.album-section {
+    margin: 50px 0;
+    text-align: center;
+}
+
+.album-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+/* Swiper 컨테이너 */
+.swiper {
+    width: 100%;
+    height: 300px; /* 슬라이드 높이 설정 */
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
 }

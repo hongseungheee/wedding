@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 요소 가져오기
     const petalsContainer = document.querySelector('.petals-container');
     const firstPage = document.querySelector('.first-page');
     const invitationContainer = document.querySelector('.invitation-container');
     const copyButtons = document.querySelectorAll('.copy-btn');
     const numberOfPetals = 50;
+    let petalInterval;
 
     // --- 꽃잎 기능 ---
     function createPetal() {
@@ -32,26 +32,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startFallingPetals() {
-        console.log("꽃ㅇ닢 호툴")
-        setInterval(createPetal, 300);
-    }
-    
-    // --- 첫 페이지 스크롤 기능 ---
-    let isInvitationVisible = false;
-    window.addEventListener('scroll', () => {
-        if (!isInvitationVisible && window.scrollY > window.innerHeight / 2) {
-            // 첫 페이지를 서서히 사라지게 함
-            firstPage.style.opacity = '0';
-            setTimeout(() => {
-                firstPage.style.display = 'none';
-            }, 1000);
-
-            // 청첩장 컨테이너를 서서히 나타나게 함
-            invitationContainer.style.opacity = '1';
-            invitationContainer.style.visibility = 'visible';
-            
-            isInvitationVisible = true;
+        if (!petalInterval) {
+            petalInterval = setInterval(createPetal, 300);
         }
+    }
+
+    function stopFallingPetals() {
+        clearInterval(petalInterval);
+        petalInterval = null;
+        petalsContainer.innerHTML = '';
+    }
+
+    // --- 스크롤에 따른 페이지 전환 및 꽃잎 제어 기능 ---
+    window.addEventListener('scroll', () => {
+        const scrollProgress = window.scrollY / window.innerHeight;
+
+        firstPage.style.opacity = 1 - scrollProgress;
+        invitationContainer.style.opacity = scrollProgress;
+
+        if (scrollProgress > 0.5) {
+            invitationContainer.style.visibility = 'visible';
+            stopFallingPetals();
+        } else {
+            invitationContainer.style.visibility = 'hidden';
+            startFallingPetals();
+        }
+    });
+
+     // --- Swiper 앨범 슬라이드 기능 ---
+     const swiper = new Swiper(".mySwiper", {
+        effect: "cards",
+        grabCursor: true,
+        loop: true,
     });
 
     // --- 계좌 복사 기능 ---
@@ -77,6 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 페이지 로드 시 모든 애니메이션 시작
+
+    
+
     startFallingPetals();
 });
