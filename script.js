@@ -107,6 +107,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+    // --- 달력 기능 ---
+    function generateCalendar(year, month, weddingDay) {
+        const firstDayOfMonth = new Date(year, month - 1, 1).getDay(); // 해당 월의 첫째 날 요일 (0:일, 1:월, ...)
+        const lastDateOfMonth = new Date(year, month, 0).getDate(); // 해당 월의 마지막 날짜
+        const calendarElement = document.createElement('div');
+        calendarElement.className = 'calendar';
+
+        // 날짜 헤더
+        const dateHeader = document.createElement('div');
+        dateHeader.className = 'date-header';
+        dateHeader.textContent = `${year}. ${String(month).padStart(2, '0')}`;
+        calendarElement.appendChild(dateHeader);
+
+        // 요일
+        const dayOfWeek = document.createElement('div');
+        dayOfWeek.className = 'day-of-week';
+        const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+        days.forEach(day => {
+            const span = document.createElement('span');
+            span.textContent = day;
+            dayOfWeek.appendChild(span);
+        });
+        calendarElement.appendChild(dayOfWeek);
+
+        // 날짜
+        const calendarDays = document.createElement('div');
+        calendarDays.className = 'calendar-days';
+        // 첫째 날 이전의 빈 칸 추가
+        for (let i = 0; i < firstDayOfMonth; i++) {
+            calendarDays.appendChild(document.createElement('span'));
+        }
+        // 날짜 추가
+        for (let i = 1; i <= lastDateOfMonth; i++) {
+            const span = document.createElement('span');
+            span.textContent = i;
+            if (i === weddingDay && year === 2026 && month === 6) {
+                span.classList.add('wedding-day');
+            }
+            calendarDays.appendChild(span);
+        }
+        calendarElement.appendChild(calendarDays);
+
+        return calendarElement;
+    }
+
+    const calendarContainer = document.querySelector('.calendar-container');
+    calendarContainer.appendChild(generateCalendar(2026, 6, 6));
+
     // --- 계좌 복사 기능 ---
     copyButtons.forEach(button => {
         button.addEventListener('click', (event) => {
