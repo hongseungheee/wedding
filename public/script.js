@@ -91,6 +91,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
+    // --- 맞춤형 초대 메시지 기능 ---
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    const name = getQueryParam('name');
+    const invitationMessageElement = document.getElementById('invitation-message');
+
+    if (name) {
+        invitationMessageElement.textContent = `${name}님 결혼식에 초대합니다`;
+    } else {
+        invitationMessageElement.textContent = '결혼식에 초대합니다';
+    }
+
+
     // --- 계좌 복사 기능 ---
     copyButtons.forEach(button => {
         button.addEventListener('click', (event) => {
