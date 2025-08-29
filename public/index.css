@@ -1,0 +1,277 @@
+/* 기본 설정 및 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500&family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #A0B9AE; /* 차분한 그린 계열 */
+    --secondary-color: #DDE7E3; /* 밝은 회색 계열 */
+    --text-dark: #333333;
+    --text-light: #666666;
+    --bg-light: #F9F9F9;
+    --border-color: #E0E0E0;
+}
+
+body {
+    font-family: 'Noto Serif KR', serif; /* 한국어 폰트 */
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    margin: 0;
+    padding: 0;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* 컨테이너 */
+.invitation-container {
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 20px; /* 더 부드러운 모서리 */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    padding: 35px 30px; /* 여백 더 확보 */
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) translateX(0) rotate(0deg) scale(1);
+        opacity: 0;
+    }
+    25% {
+        transform: translateY(20vh) translateX(10vw) rotate(90deg) scale(0.9);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateY(50vh) translateX(-10vw) rotate(180deg) scale(1.1);
+        opacity: 0.6;
+    }
+    75% {
+        transform: translateY(80vh) translateX(5vw) rotate(270deg) scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(110vh) translateX(0) rotate(360deg) scale(0.9);
+        opacity: 0; /* 화면 밖으로 나갈 때 서서히 사라지도록 */
+    }
+}
+
+/* 헤더 및 제목 */
+.invitation-container h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3em;
+    color: #80A89A; /* 색상 변경 */
+    margin-bottom: 12px;
+    font-weight: 700;
+    letter-spacing: 2px; /* 간격 늘리기 */
+    animation: slideInDown 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.invitation-container h2 {
+    font-size: 1.8em;
+    color: var(--text-dark);
+    margin-top: 50px;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.invitation-container h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 60px;
+    height: 2px;
+    background-color: var(--primary-color);
+    animation: expandLine 1.5s ease-out;
+}
+
+@keyframes slideInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes expandLine {
+    from { width: 0; }
+    to { width: 60px; }
+}
+
+
+/* 소개글 */
+.invitation-container p {
+    font-size: 1.05em;
+    color: var(--text-light);
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+/* 커플 사진 */
+.couple-photo {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+    margin: 30px auto;
+    object-fit: cover;
+    aspect-ratio: 4 / 3; /* 사진 비율 유지 */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.couple-photo:hover {
+    transform: scale(1.02);
+}
+
+/* 정보 섹션 */
+.wedding-info, .contact-info {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.wedding-info p, .contact-info p {
+    font-size: 1em;
+    margin: 10px 0;
+    color: var(--text-dark);
+}
+
+.wedding-info strong {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* 링크 스타일 */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #7a9c8f; /* 호버 시 약간 어둡게 */
+}
+
+.account-info {
+    margin-top: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.account-item {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-item p {
+    margin: 5px 0;
+}
+
+.copy-btn {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.copy-btn:hover {
+    background-color: #7a9c8f;
+}
+
+/* 추가적인 세련된 요소: 구분선 */
+.separator {
+    width: 80px;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 50px auto;
+}
+
+/* 푸터 (선택 사항) */
+.footer {
+    margin-top: 50px;
+    font-size: 0.85em;
+    color: #999;
+}
+
+/* 미디어 쿼리 (모바일 최적화) */
+@media (max-width: 500px) {
+    .invitation-container {
+        padding: 20px 15px;
+        margin: 15px;
+    }
+
+    .invitation-container h1 {
+        font-size: 2.2em;
+    }
+
+    .invitation-container h2 {
+        font-size: 1.4em;
+    }
+
+    .invitation-container p {
+        font-size: 0.95em;
+    }
+}
+
+/* --- 꽃잎 효과 CSS --- */
+/* 꽃잎 컨테이너 (화면 전체에 오도록) */
+.petals-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* 클릭을 방해하지 않도록 */
+    overflow: hidden; /* 화면 밖으로 나가는 꽃잎 숨기기 */
+    z-index: 1000; /* 다른 요소 위에 오도록 */
+}
+
+
+/* 개별 꽃잎의 기본 스타일 */
+.petal {
+    position: absolute;
+    width: 20px; /* 꽃잎 크기를 약간 키워 자연스럽게 */
+    height: 18px; /* 높이를 다르게 하여 비대칭 */
+    background: linear-gradient(to bottom right, #ffb6c1, #ffe4e1); /* 그라데이션으로 입체감 추가 */
+    /* border-radius를 불규칙하게 조절하여 꽃잎 모양 표현 */
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    opacity: 0; /* 처음엔 투명하게 */
+    animation: fall 10s linear infinite, fade-in 1s forwards;
+    box-shadow: 0 0 5px rgba(255, 182, 193, 0.5);
+    /* filter를 추가하여 약간의 질감 표현 */
+    filter: blur(0.5px); /* 약간의 블러로 부드러운 느낌 */
+}
+
+/* 꽃잎이 떨어지는 애니메이션 */
+@keyframes fall {
+    from {
+        transform: translateY(-10vh) rotate(0deg); /* 화면 위에서 시작 */
+        opacity: 0;
+    }
+    to {
+        transform: translateY(110vh) rotate(720deg); /* 화면 아래로 떨어지고 더 많이 회전 */
+        opacity: 0.7; /* 떨어질 때 불투명 */
+    }
+}
+@keyframes fade-in {
+    to {
+        opacity: 0.8;
+    }
+}
